@@ -34,6 +34,7 @@ label{
     display: flex !important;
     justify-content: center;
     margin-top: 100px;
+    /*height: 1000px;*/
     margin-bottom: 100px;
 }
 
@@ -327,7 +328,8 @@ textarea:focus {
     right: -10%;
 }
 
-.more-icon-image{
+
+.moer-icon-image{
     width: 28px;
     height: 28px;
     position: relative;
