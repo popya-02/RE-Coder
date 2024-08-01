@@ -37,6 +37,8 @@
                                     <div class="like-box flex-fill p-3">
                                         <h6>선호하는 것</h6>
                                         <ul class="font-size-20">
+                                            <li th:each="like : ${likes}" th:text="${like}">선호하는 항목</li>
+
                                             <li>실내데이트</li>
                                             <li>활발함</li>
                                             <li>밝은 분위기</li>
@@ -45,6 +47,8 @@
                                     <div class="like-box flex-fill p-3">
                                         <h6>기피하는 것</h6>
                                         <ul class="font-size-20">
+                                            <li th:each="dislike : ${dislikes}" th:text="${dislike}">기피하는 항목</li>
+
                                             <li>혼잡한 장소</li>
                                             <li>소음</li>
                                             <li>어두운 분위기</li>
@@ -84,6 +88,8 @@
 <script th:src="@{/js/reference_js/bootstrap.bundle.min.js}"></script>
 <script th:src="@{/js/reference_js/owl.carousel.min.js}"></script>
 <script th:src="@{/js/reference_js/custom.js}"></script>
+<script th:src="@{/js/mypage/mypage.js}"></script>
+
 
 </body>
 </html>
