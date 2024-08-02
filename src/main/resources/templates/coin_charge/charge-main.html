@@ -3,15 +3,15 @@
 <head th:replace="fragments/head :: head"></head>
 <body>
 <link rel="stylesheet" th:href="@{/css/charge/charge-main.css}"/>
-<link rel="stylesheet" th:href="@{/css/mypage.css}">
+<link rel="stylesheet" th:href="@{/css/mypage/mypage.css}">
 <nav th:replace="fragments/navigation :: navigation"></nav>
 <section class="charge-main-sec">
     <div class="container charge-out-box">
     <div th:replace="mypage/mypage_nav :: mypagenav"></div>
         <div class="charge-shop-box">
             <div class="charge-my-tabs">
-                <a class="charge-tab-ico">충전 내역</a>
-                <a class="charge-tab-ico">코인 충전</a>
+                <a class="charge-tab-ico" th:href="@{/charge/shop}"> 코인 충전</a>
+                <a class="charge-tab-ico not-choice" th:href="@{/charge/history}">충전 내역</a>
             </div>
             <div class="coin-shop-area">
                 <div class="coin-shop-info">
