@@ -11,7 +11,7 @@
                     <ul class="site-footer-links">
                         <li><a class="site-footer-link" href="#">이용약관</a></li>
                         <li><a class="site-footer-link" href="#">개인정보처리방침</a></li>
-                        <li><a class="site-footer-link" href="#">회사소개</a></li>
+                        <li><a class="site-footer-link" th:href="@{/about}">회사소개</a></li>
                         <li><a class="site-footer-link" href="#">이용안내</a></li>
                     </ul>
                 </div>
@@ -53,6 +53,7 @@
                 <p class="bottom-content">당신의 인연을 찾기 위한 1:1 소개팅 전문 서비스</p>
             </div>
         </div>
+    <script th:replace="fragments/script::script"></script>
     </footer>
 </html>
 
