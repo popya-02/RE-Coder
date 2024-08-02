@@ -1,0 +1,539 @@
+/* base 설정 */
+.hero-section {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section .container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.mypage-box {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.mypage-box-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    min-width: 1100px;
+    padding-bottom: 20px;
+}
+
+@media screen and (max-width: 992px) {
+    .sidebar-menu {
+        display: none;
+    }
+
+    .mypage-box-container {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .custom-block {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+/* 공통 스타일 */
+.custom-block {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: calc(100% - 340px);
+    min-height: 65vh;
+    background-color: rgba(249, 249, 249, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.custom-block:hover {
+    background: var(--white-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: rgba(249, 249, 249, 0.3);
+    border-color: #ddd !important;
+    transform: none !important;
+}
+
+.custom-block h5 {
+    margin-bottom: 20px;
+}
+
+.custom-block-info {
+    overflow: hidden;
+    padding-bottom: 10px;
+}
+
+.custom-block-info p {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.custom-block-info p .label {
+    display: inline-block;
+    width: 150px;
+    text-align: right;
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+
+
+.form-actions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-action {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.btn-action:hover {
+    background-color: var(--primary-color);
+    border-color: #ccc;
+    color: var(--white-color);
+}
+
+.btn-submit, .btn-cancel {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.btn-submit {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn-submit:hover {
+    background-color: var(--custom-btn-bg-hover-color);
+}
+
+.btn-cancel {
+    background-color: #ccc;
+    color: #fff;
+}
+
+.btn-cancel:hover {
+    background-color: #999;
+}
+
+.text-primary-color{
+    color: var(--primary-color);
+}
+
+.mypage-line{
+    color : var(--custom-logo-pink);
+    border-top: 2px solid !important;
+    opacity: 0.15 !important;
+    margin-top: 2rem 0 !important;
+}
+
+/* 사이드바 메뉴 */
+.sidebar-menu {
+    width: 150px;
+    height: 100%;
+    min-height: 65vh;
+    background-color: rgba(249, 249, 249, 0.3);
+    padding: 10px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-menu ul li {
+    height: 50px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 11px;
+    margin-bottom: 11px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-menu ul li.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.sidebar-menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar-menu ul li.active a {
+    color: #fff;
+}
+
+.sidebar-menu ul li a:hover {
+    color: var(--secondary-color);
+}
+
+/* 페이지별 스타일 */
+
+/* 1. 메인 페이지 스타일 */
+.main-page .form-actions .btn-cancel {
+    display: none;
+}
+/* 수정 페이지 박스 스타일 */
+.custom-block-edit {
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    background-color: rgba(249, 249, 249, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 2. 프로필 사진 스타일 */
+.profile-picture {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 400px;
+    overflow: hidden;
+    background-color: none;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-picture img {
+    width: 95%;
+    height: 95%;
+    object-fit: cover;
+}
+
+.btn-new-file {
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    cursor: pointer;
+}
+
+.btn-new-file:hover {
+    background-color: #e0e0e0;
+    border-color: #ccc;
+}
+
+.input-short {
+    width: 200px;
+}
+
+.pwd-tab {
+    width: 150px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+/* 3. 취미 및 성향 박스 스타일 */
+.hobby-container {
+    display: flex;
+    width: 100%;
+}
+
+.hobby-box-1 {
+    flex: 1;
+    width: 60%;
+    height: 40vh;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: rgba(249, 249, 249, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hobby-box-2 {
+    flex: 1;
+    width: 40%;
+    height: 40vh;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: rgba(249, 249, 249, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.hobby-box-2 h4 {
+margin-bottom : 3rem;
+}
+
+.checkbox-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkbox-list label {
+    width: 20%; /* 한 줄에 5개의 항목이 들어가도록 설정 */
+    box-sizing: border-box;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+/* 4. 좋아요 목록 스타일 */
+.like-dislike-container {
+    display: flex;
+    width: 100%;
+}
+
+.like-box {
+    flex: 1;
+    padding: 0;
+    margin: 0;
+}
+
+.liked-feed-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.liked-feed-item {
+    position: relative;
+    background-color: rgba(249, 249, 249, 0.6);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    flex-basis: calc(25% - 20px);
+    text-align: center;
+    overflow: hidden;
+}
+
+.feed-heart {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 6px;
+    border: 1.5px solid var(--secondary-color);
+    background-color: #fff;
+    border-radius: 50%;
+    color: var(--primary-color);
+}
+
+.feed-heart.liked {
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+
+.liked-feed-item:hover {
+    background-color: var(--primary-color);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.liked-feed-item:hover .feed-title {
+    color: var(--secondary-color) !important;
+}
+
+.liked-feed-item:hover .feed-author,
+.liked-feed-item:hover .feed-liked-time {
+    color: var(--white-color) !important;
+}
+
+.feed-author, .feed-title {
+    margin: 5px 0;
+    font-size: 14px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: normal;
+}
+
+.feed-title {
+    font-weight: bold;
+    color: var(--primary-color) !important;
+}
+
+.feed-author {
+    margin-bottom: 0px !important;
+}
+
+.feed-liked-time {
+    font-size: 12px !important;
+    color: #888;
+    margin-top: 5px;
+    margin-bottom: 0px !important;
+}
+
+/* 5. 사진 후기 섹션 스타일 */
+.review-section {
+    margin-bottom: 40px;
+}
+
+.photo-review-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.photo-review-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(33% - 20px);
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.photo-review-item p {
+    font-size : 1rem !important;
+}
+
+.photo-review-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.photo-review-content {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.icon_users {
+    width: 16px;
+    height: 16px;
+    display: block;
+    float: left;
+    margin-top: 1px;
+    margin-right: 5px;
+    background: url(/image/mypage/icon_users.png) no-repeat 0 0;
+    background-size: contain;
+}
+
+/* 6. 실시간 리뷰 섹션 스타일 */
+.live-review-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.live-review-item {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.live-review-item h6 {
+    font-size: 1.4rem !important; /* 원하는 크기로 조절하세요 */
+}
+
+.live-review-item p{
+    font-size:1rem !important;
+    margin-bottom:0px;
+    font-weight:normal;
+}
+
+.review-rating {
+    font-size: 1.2rem;
+    color: gold;
+}
+
+/* 7. 페이지네이션 스타일 */
+.custom-block-info .pagination {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    border: none;
+}
+
+/* 8. 결제 내역 스타일 */
+.transaction-section h5 {
+    color: var(--white-color);
+    margin-bottom: 15px;
+}
+
+.transaction-section .table {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color);
+}
+
+.transaction-section .table th,
+.transaction-section .table td {
+    color: var(--primary-color);
+    border-color: rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.balance-info h4 {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
