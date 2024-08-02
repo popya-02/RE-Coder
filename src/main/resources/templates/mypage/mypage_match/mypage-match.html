@@ -13,18 +13,19 @@
             <div class="row d-flex justify-content-center align-items-start mypage-box">
 
                 <div class="mypage-box-container d-flex">
-                    <div class="sidebar-menu">
-                        <ul class="menu-list">
-                            <li><a th:href="@{/mypage/main}">내 정보</a></li>
-                            <li><a th:href="@{/mypage/hobby}">성향/취미</a></li>
-                            <li><a th:href="@{/mypage/review}">내 후기</a></li>
-                            <li><a th:href="@{/mypage/feedlike}">피드 좋아요 목록</a></li>
-                            <li><a th:href="@{/mypage/proflike}">프로필 좋아요 목록</a></li>
-                            <li><a th:href="@{/mypage/cash}">결제 내역</a></li>
-                            <li class="active"><a th:href="@{#}">매칭 내역</a></li>
-                            <li><a th:href="@{/mypage/delete}">회원 탈퇴</a></li>
-                        </ul>
-                    </div>
+                    <div th:replace="mypage/mypage_nav :: mypagenav"></div>
+<!--                    <div class="sidebar-menu">-->
+<!--                        <ul class="menu-list">-->
+<!--                            <li><a th:href="@{/mypage/main}">내 정보</a></li>-->
+<!--                            <li><a th:href="@{/mypage/hobby}">성향/취미</a></li>-->
+<!--                            <li><a th:href="@{/mypage/review}">내 후기</a></li>-->
+<!--                            <li><a th:href="@{/mypage/feedlike}">피드 좋아요 목록</a></li>-->
+<!--                            <li><a th:href="@{/mypage/proflike}">프로필 좋아요 목록</a></li>-->
+<!--                            <li><a th:href="@{/mypage/cash}">결제 내역</a></li>-->
+<!--                            <li class="active"><a th:href="@{#}">매칭 내역</a></li>-->
+<!--                            <li><a th:href="@{/mypage/delete}">회원 탈퇴</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
                     <div class="custom-block d-flex flex-column align-items-start text-left p-4">
 
                         <div class="text-center mb-5 pb-2 w-100">
