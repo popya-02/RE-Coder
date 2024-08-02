@@ -45,20 +45,20 @@
     color: #757575;
     font-size: 13px;
 }
-.pt_title {
+.pt-title {
     display: flex;
     align-items: center;
     font-size: 17px;
     font-weight: 500;
     color: #222222;
 }
-.pt_info {
+.pt-info {
     font-size: 13px;
     color: #757575;
     margin-top: 10px;
 }
 
-.icon_users {
+.icon-users {
     width: 16px;
     height: 16px;
     display: block;
@@ -113,7 +113,7 @@
     position: relative;
 }
 
-.view_image{
+.view-image{
 display : block;
 }
 
