@@ -1,0 +1,71 @@
+
+.custom-alarm-item{
+    padding: 10px 24px !important;
+}
+
+.custom-alarm-item p{
+    margin-bottom: 0px !important;
+}
+
+.admin-user-hr{
+    margin: 0.5rem 0 !important;
+}
+
+.logo-image {
+    width: 35px !important;
+    margin-right: 10px;
+    height: auto;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.logo-text{
+    font-size: 28px;
+    font-weight: bold;
+    color: #542CA7 !important;
+    margin: 0;
+    position: relative;
+    left: -5px;
+}
+
+.sideber-logo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.custom-admin-header{
+    padding: 18px 24px !important;
+}
+
+.m-y-total-profit{
+    min-width: 300px !important;
+}
+
+.avtar{
+    font-size: 24px !important;
+}
+
+.detail-admin{
+    height: 28px;
+    width: 28px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 5px;
+    margin-left: 3px;
+    box-shadow: 1px 2px 2px 0px #79797924;
+}
+
+.detail-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.detial-title-box{
+    width: 90% !important;
+}
+
