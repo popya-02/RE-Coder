@@ -8,9 +8,9 @@
 <main>
     <nav th:replace="fragments/navigation :: navigation"></nav>
 
-    <section class="hero-section d-flex align-items-center">
-        <div class="container d-flex justify-content-center">
-            <div class="row d-flex justify-content-center align-items-start mypage-box">
+    <section class="hero-section d-flex">
+        <div class="container d-flex">
+            <div class="row d-flex justify-content-center mypage-box">
 
                 <div class="mypage-box-container d-flex">
                     <div th:replace="mypage/mypage_nav :: mypagenav"></div>
@@ -34,10 +34,50 @@
                         </div>
 
                         <div class="custom-block-info w-100">
-                            <div class="balance-info mb-4">
+                            <div class="matching-anounce mb-4">
                                 <p>최근 10건까지만 표시됩니다. </p>
                             </div>
 
+                            <div class="transaction-section mb-5">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>매칭 생성일</th>
+                                        <th>상대방 이름</th>
+                                        <th>매칭 성공 여부</th>
+                                        <th>종료 여부</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>2024-08-01</td>
+                                        <td>이름1</td>
+                                        <td class="text-success">Y</td>
+                                        <td class="text-success">Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024-08-01</td>
+                                        <td>이름2</td>
+                                        <td class="text-success">Y</td>
+                                        <td class="text-success">Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024-08-01</td>
+                                        <td>이름3</td>
+                                        <td class="text-success">Y</td>
+                                        <td class="text-danger">N</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024-08-01</td>
+                                        <td>이름4</td>
+                                        <td class="text-success">Y</td>
+                                        <td class="text-success">Y</td>
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
 
                         </div>
 
@@ -51,13 +91,6 @@
 
 <footer th:replace="fragments/footer :: footer"></footer>
 
-
-<!-- JAVASCRIPT FILES -->
-<script th:src="@{/js/reference_js/jquery.js}"></script>
-<script th:src="@{/js/reference_js/jquery.min.js}"></script>
-<script th:src="@{/js/reference_js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/js/reference_js/owl.carousel.min.js}"></script>
-<script th:src="@{/js/reference_js/custom.js}"></script>
 <script th:src="@{/js/mypage/mypage.js}"></script>
 
 </body>

@@ -10,7 +10,7 @@
 
     <section class="hero-section d-flex align-items-center">
         <div class="container d-flex justify-content-center">
-            <div class="row d-flex justify-content-center align-items-start mypage-box">
+            <div class="row d-flex justify-content-center mypage-box">
 
                 <div class="mypage-box-container d-flex">
                     <div th:replace="mypage/mypage_nav :: mypagenav"></div>
@@ -48,11 +48,10 @@
                             <p class="mb-2"><span class="label fw-bold">MBTI :</span> <span id="user-mbti">MBTI</span></p>
                         </div>
                         <div class="form-actions d-flex justify-content-center mt-4 w-100">
-                            <button type="button" class="btn-submit" th:onclick="'location.href=\'' + @{/mypage/infoedit} + '\''">수정하기</button>
+                            <button type="button" class="btn-submit" onclick="location.href='/mypage/infoedit'">수정하기</button>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -60,12 +59,6 @@
 
 <footer th:replace="fragments/footer :: footer"></footer>
 
-<!-- JAVASCRIPT FILES -->
-<script th:src="@{/js/reference_js/jquery.js}"></script>
-<script th:src="@{/js/reference_js/jquery.min.js}"></script>
-<script th:src="@{/js/reference_js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/js/reference_js/owl.carousel.min.js}"></script>
-<script th:src="@{/js/reference_js/custom.js}"></script>
 <script th:src="@{/js/mypage/mypage.js}"></script>
 
 </body>
