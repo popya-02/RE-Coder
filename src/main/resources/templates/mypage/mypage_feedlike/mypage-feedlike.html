@@ -8,9 +8,9 @@
 <main>
     <nav th:replace="fragments/navigation :: navigation"></nav>
 
-    <section class="hero-section d-flex align-items-center">
-        <div class="container d-flex justify-content-center">
-            <div class="row d-flex justify-content-center align-items-start mypage-box">
+    <section class="hero-section d-flex">
+        <div class="container d-flex">
+            <div class="row d-flex justify-content-center mypage-box">
 
                 <div class="mypage-box-container d-flex">
                     <div th:replace="mypage/mypage_nav :: mypagenav"></div>
@@ -131,30 +131,13 @@
                                     <p class="feed-author">EunsikJeong</p>
                                     <p class="feed-liked-time">2024.07.30 15:17</p>
                                 </div>
-                                <div class="liked-feed-item" onclick="location.href='/feed/3'">
-                                    <a href="#" class="badge ms-auto feed-heart liked" onclick="event.stopPropagation(); toggleLike(this);">
-                                        <i class="bi-heart feed-heart-icon"></i>
-                                    </a>
-                                    <p class="feed-title">자유보드 이야기</p>
-                                    <p class="feed-author">AhtaeKim</p>
-                                    <p class="feed-liked-time">2024.07.30 15:17</p>
-                                </div>
-                                <div class="liked-feed-item" onclick="location.href='/feed/4'">
-                                    <a href="#" class="badge ms-auto feed-heart liked" onclick="event.stopPropagation(); toggleLike(this);">
-                                        <i class="bi-heart feed-heart-icon"></i>
-                                    </a>
-                                    <p class="feed-title">매칭 후기 2</p>
-                                    <p class="feed-author">JaeinLee</p>
-                                    <p class="feed-liked-time">2024.07.30 15:17</p>
-                                </div>
-                                <div class="liked-feed-item" onclick="location.href='/feed/5'">
-                                    <a href="#" class="badge ms-auto feed-heart liked" onclick="event.stopPropagation(); toggleLike(this);">
-                                        <i class="bi-heart feed-heart-icon"></i>
-                                    </a>
-                                    <p class="feed-title">연애 조언 3</p>
-                                    <p class="feed-author">AhtaeKim</p>
-                                    <p class="feed-liked-time">2024.07.30 15:17</p>
-                                </div>
+
+                            </div>
+                            <div class="pagination">
+                                <button class="btn-action">이전</button>
+                                <button class="btn-action">1</button>
+                                <button class="btn-action">2</button>
+                                <button class="btn-action">다음</button>
                             </div>
                         </div>
 
@@ -168,13 +151,6 @@
 
 <footer th:replace="fragments/footer :: footer"></footer>
 
-
-<!-- JAVASCRIPT FILES -->
-<script th:src="@{/js/reference_js/jquery.js}"></script>
-<script th:src="@{/js/reference_js/jquery.min.js}"></script>
-<script th:src="@{/js/reference_js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/js/reference_js/owl.carousel.min.js}"></script>
-<script th:src="@{/js/reference_js/custom.js}"></script>
 <script th:src="@{/js/mypage/mypage.js}"></script>
 
 <script>
