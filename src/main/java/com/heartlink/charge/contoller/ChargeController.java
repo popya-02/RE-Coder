@@ -14,7 +14,7 @@ public class ChargeController {
     }
 
     @GetMapping("/history")
-    public String cashpage() {
+    public String cashPage() {
         return "coin_charge/mypage-cash";
     }
 }
