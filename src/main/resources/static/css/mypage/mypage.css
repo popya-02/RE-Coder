@@ -1,33 +1,34 @@
 /* 중앙 정렬 및 섹션 높이 설정 */
+
 .hero-section {
     min-height: 70vh;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
+    padding-bottom:0px !important;
 }
 
 .hero-section .container {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
     width: 100%;
 }
 
 .mypage-box {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
     width: 100%;
 }
 
 .mypage-box-container {
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
     width: 100%;
     min-width:1100px;
+    padding:0px;
     padding-bottom: 20px;
 }
+
 
 .mypage-box-container .sidebar-menu .menu-list li a{
     font-weight: normal;
@@ -46,6 +47,7 @@
     .custom-block {
         width: 100%;
         margin: 0 auto;
+        border-radius: 0 15px 15px 0;
     }
 }
 
@@ -53,10 +55,11 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     width: 180px;
     height: 100%;
-    min-height: 65vh;
+    min-height: 690px;
+    height:690px;
     background-color: rgba(249, 249, 249, 0.3);
     border-radius: 15px 0 0 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -116,14 +119,21 @@
 /* 공통 스타일 */
 .custom-block {
     border: 1px solid #ddd;
-    border-radius: 10px;
     padding: 20px;
-    width: calc(100% - 340px);
-    min-height: 65vh;
+    width: 100%;
+    min-height: 690px;
+    border-radius: 0 15px 15px 0;
     background-color: rgba(249, 249, 249, 0.3);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow:  4px 0 8px rgba(0, 0, 0, 0.2);
 }
 
+.custom-block:hover {
+    background: var(--white-color);
+    box-shadow:  4px 0 8px rgba(0, 0, 0, 0.2);
+    background-color: rgba(249, 249, 249, 0.3);
+    border-color: #ddd !important;
+    transform: none !important;
+}
 .custom-block-edit {
     position: relative;
     border: 1px solid #ddd;
@@ -140,6 +150,9 @@
 
 .custom-block-info {
     overflow: hidden;
+    padding-bottom: 10px;
+
+    height:100%;
 }
 
 .custom-block-info p {
@@ -155,6 +168,7 @@
     width: 150px;
     text-align: right;
     margin-right: 10px;
+    color: var(--primary-color);
 }
 
 .custom-block:hover {
@@ -162,7 +176,7 @@
 }
 
 .mypage-box-container .custom-block:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow:  4px 0 8px rgba(0, 0, 0, 0.2) !important;
     background-color: rgba(249, 249, 249, 0.3);
     border-color: #ddd !important;
     transform: none !important;
@@ -175,20 +189,7 @@
     margin-top: 20px;
 }
 
-.btn-action {
-    margin-left: 10px;
-    padding: 5px 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    color: #333;
-    cursor: pointer;
-}
 
-.btn-action:hover {
-    background-color: #e0e0e0;
-    border-color: #ccc;
-}
 
 .btn-submit, .btn-cancel {
     padding: 10px 20px;
@@ -216,6 +217,20 @@
     background-color: #999;
 }
 
+.text-primary-color{
+    color: var(--primary-color);
+}
+
+.mypage-line{
+    color : var(--custom-logo-pink);
+    border-top: 2px solid !important;
+    opacity: 0.15 !important;
+    margin-top: 2rem 0 !important;
+}
+
+/* 사이드바 메뉴 */
+
+
 /* 페이지별 스타일 */
 .edit-page .form-actions .btn-cancel {
     display: inline-block;
@@ -240,9 +255,13 @@
     align-items: center;
 }
 
+.profile-picture-editpage{
+    top: 70px;
+}
+
 .profile-picture img {
-    width: 95%;
-    height: 95%;
+    width: 90%;
+    height: 90%;
     object-fit: cover;
 }
 
@@ -412,6 +431,11 @@ margin-bottom : 3rem;
     margin-top: 5px;
     margin-bottom: 0px !important;
 }
+.review-tab{
+    border: 1px solid #ddd;
+    border-radius : 0 15px 15px 0;
+    background-color: rgba(249, 249, 249, 0.5);
+}
 
 /* 5. 사진 후기 섹션 스타일 */
 .review-section {
@@ -451,7 +475,7 @@ margin-bottom : 3rem;
     margin-top: 10px;
 }
 
-.icon_users {
+.icon-users {
     width: 16px;
     height: 16px;
     display: block;
@@ -483,7 +507,7 @@ margin-bottom : 3rem;
 }
 
 .live-review-item h6 {
-    font-size: 1.4rem !important; /* 원하는 크기로 조절하세요 */
+    font-size: 1.4rem !important;
 }
 
 .live-review-item p{
@@ -518,6 +542,126 @@ margin-bottom : 3rem;
 }
 
 .btn-action:hover {
-    background-color: #e0e0e0;
+    background-color: var(--primary-color);
     border-color: #ccc;
+    color: var(--white-color);
+}
+
+
+.text-success {
+    color: #28a745 !important;
+}
+.text-danger {
+    color: #dc3545 !important;
+}
+
+
+/* 9. 프로필 좋아요 스타일 */
+
+
+
+.liked-prof-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.liked-prof-item {
+    position: relative;
+    background-color: rgba(249, 249, 249, 0.6);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    flex-basis: calc(25% - 10px);
+    text-align: center;
+    overflow: hidden;
+}
+
+.prof-heart {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 6px;
+    border: 1.5px solid var(--secondary-color);
+    background-color: #fff;
+    border-radius: 50%;
+    color: var(--primary-color);
+}
+
+.prof-heart.liked {
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+
+.liked-prof-item:hover {
+    background-color: var(--primary-color);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.liked-prof-item:hover .prof-author,
+.liked-prof-item:hover .prof-liked-time {
+    color: var(--white-color) !important;
+}
+
+.prof-author, .prof-img {
+    margin: 2px 0;
+    font-size: 12px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight:normal;
+}
+
+.prof-img {
+    width: 100%; /* 원하는 크기 설정 */
+    height: 133px; /* 원하는 크기 설정 */
+    object-fit: cover;
+    margin-bottom: 2px;
+}
+
+.prof-author {
+    margin-bottom: 0px !important;
+}
+
+.prof-liked-time {
+    font-size: 10px !important;
+    color: #888;
+    margin-top: 0px;
+    margin-bottom: 0px !important;
+}
+
+
+
+/* 기본적인 탭 메뉴 스타일 */
+.review-my-tabs {
+    display: flex;
+}
+
+
+
+.review-tab-ico {
+    padding: 10px 20px;
+    border: none;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    margin-right: 3px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+}
+
+.review-tab-ico.active {
+background-color: rgba(249, 249, 249, 0.5);
+color : black;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
 }
