@@ -23,7 +23,7 @@ body {
 }
 
 .editor-container {
-  height: 940px;
+  height: 1000px;
   width: 1000px;
   margin: 200px;
   padding: 30px;
@@ -95,3 +95,4 @@ body {
 .submit-btn:hover {
   background-color: #218838;
 }
+
