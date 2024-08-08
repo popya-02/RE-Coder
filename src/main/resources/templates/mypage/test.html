@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+
+<link href="/css/mypage/test.css" rel="stylesheet">
+<script src="/webjars/sockjs-client/1.5.1/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/2.3.3/stomp.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/chatbot/app.js" charset="UTF-8"></script>
+
+<body>
+<noscript>
+    <h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable Javascript and reload this page!</h2>
+</noscript>
+<div id="main-content" class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- 웹소켓 연결 버튼 -->
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="connect">웹소켓 연결:</label>
+                    <button id="connect" class="btn btn-default" type="button">연결</button>
+                    <button id="disconnect" class="btn btn-default" type="button" disabled="disabled">해제</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <!-- 메시지 입력 및 전송 버튼 -->
+            <form id="chat-form" class="form-inline">
+                <div class="form-group">
+                    <label for="msg">문의사항</label>
+                    <input type="text" id="msg" class="form-control" placeholder="내용을 입력하세요....">
+                </div>
+                <button id="send" class="btn btn-default" type="submit">보내기</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table id="conversation" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>메세지</th>
+                </tr>
+                </thead>
+                <tbody id="communicate">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 동적 콘텐츠를 위한 섹션 -->
+    <div class="row">
+        <div class="col-md-12">
+            <div id="dynamic-content"></div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+<script th:src="@{/js/mypage/mypage.js}"></script>
+
+</body>
+</html>
