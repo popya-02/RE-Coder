@@ -7,6 +7,6 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface UserMapper {
 
-    User getUserByIdTest(@Param("id") Long id);
+    User getUserByIdTest(@Param("id") int id);
 
 }
