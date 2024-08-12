@@ -30,11 +30,8 @@
     width: 72px;
     height: 72px;
     border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
 	overflow: hidden;
+	margin-bottom : 0px;
 }
 .list-thumb img {
     width: 100%;
