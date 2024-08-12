@@ -35,7 +35,10 @@ public class ReviewController {
     }
 
     @GetMapping("/photodetail")
-    public String photoDetail() {
+    public String photoDetail(@RequestParam("reviewNo") int reviewNo, Model model) {
+        // 리뷰 상세 정보 가져오기
+        ReviewDto review = reviewService.getReviewDetail(reviewNo);
+        model.addAttribute("review", review);
         return "/review/review_photo/photo-detail";
     }
 

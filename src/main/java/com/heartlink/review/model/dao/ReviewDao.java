@@ -27,4 +27,9 @@ public class ReviewDao {
     public int saveReviewPhoto(ReviewPhotoDto reviewPhoto) {
         return sqlSession.insert("reviewMapper.saveReviewPhoto", reviewPhoto);
     }
+
+    // 특정 리뷰 상세 정보 가져오기
+    public ReviewDto getReviewDetail(int reviewNo) {
+        return sqlSession.selectOne("reviewMapper.getReviewDetail", reviewNo);
+    }
 }

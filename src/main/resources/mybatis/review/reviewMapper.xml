@@ -19,18 +19,28 @@
         <result column="REVIEW_NO" property="reviewNo"/>
     </resultMap>
 
+    <!-- 리뷰 저장 -->
     <insert id="saveReview" parameterType="com.heartlink.review.model.dto.ReviewDto">
         INSERT INTO REVIEW_BOARD (REVIEW_NO, REVIEW_TITLE, REVIEW_CONTENT, REVIEWER_USER_ID, REVIEWED_USER_ID)
         VALUES (REVIEW_SEQ.NEXTVAL, #{reviewTitle}, #{reviewContent}, #{reviewerUserId}, #{reviewedUserId})
     </insert>
 
+    <!-- 마지막 리뷰 번호 가져오기 -->
     <select id="getLastReviewNo" resultType="string">
         SELECT REVIEW_SEQ.CURRVAL FROM DUAL
     </select>
 
+    <!-- 리뷰 사진 저장 -->
     <insert id="saveReviewPhoto" parameterType="com.heartlink.review.model.dto.ReviewPhotoDto">
         INSERT INTO REVIEW_PHOTO_BOARD (PHOTO_NO, REVIEW_NO, PHOTO_PATH, PHOTO_NAME)
         VALUES (REVIEW_PHOTO_SEQ.NEXTVAL, #{reviewNo}, #{photoPath}, #{photoName})
     </insert>
+
+    <!-- 특정 리뷰 상세 정보 가져오기 -->
+    <select id="getReviewDetail" resultMap="reviewResultSet" parameterType="int">
+        SELECT REVIEW_NO, REVIEW_TITLE, REVIEW_CONTENT, REVIEWER_USER_ID, REVIEWED_USER_ID, REVIEW_RATING
+        FROM REVIEW_BOARD
+        WHERE REVIEW_NO = #{reviewNo}
+    </select>
 
 </mapper>

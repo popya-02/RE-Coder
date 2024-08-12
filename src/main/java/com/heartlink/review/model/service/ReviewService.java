@@ -8,4 +8,6 @@ public interface ReviewService {
 
     public boolean saveReview(ReviewDto review, ReviewPhotoDto reviewPhoto);
 
+    ReviewDto getReviewDetail(int reviewNo);
+
 }

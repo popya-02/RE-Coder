@@ -28,5 +28,9 @@ public class ReviewServiceImpl implements ReviewService {
         }
         return false;
     }
+
+    public ReviewDto getReviewDetail(int reviewNo) {
+        return reviewDao.getReviewDetail(reviewNo);
+    }
 }
 
