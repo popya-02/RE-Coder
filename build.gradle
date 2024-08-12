@@ -28,8 +28,10 @@ dependencies {
 //    implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
 //    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 //    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
-//    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 
+    // 회원가입 유효성
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 
     // 타임리프
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -57,6 +59,9 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // 이메일 인증
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
 }
 
 
