@@ -46,4 +46,16 @@ public class MemberService {
     public boolean isNicknameDuplicate(String nickname) {
         return memberMapper.duplicateNick(nickname) > 0;
     }
+
+
+    // 로그인 인증 메서드
+    public boolean verifyLogin(String email, String password) {
+        MemberDto member = memberMapper.findByEmail(email); // 이메일로 사용자 찾기
+
+        if (member == null) {
+            return false;
+        }
+
+        return passwordEncoder.matches(password, member.getPassword()); // 비밀번호 비교
+    }
 }

@@ -85,7 +85,7 @@
 
         <!-- 로그인 폼 -->
         <div class="sign-in-container">
-            <form class="login-form">
+            <form class="login-form" th:action="@{/member/login}" method="post">
                 <h1>로그인</h1>
                 <div class="social-links">
                     <div>
@@ -95,7 +95,7 @@
                 <span>소셜 로그인</span>
                 <input type="Id" placeholder="아이디">
                 <input type="password" placeholder="비밀번호">
-                <button class="form-btn">로그인</button>
+                <button class="form-btn" type="submit">로그인</button>
             </form>
         </div>
 

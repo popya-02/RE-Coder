@@ -71,4 +71,21 @@ public class MemberController {
         }
         return "사용 가능한 닉네임입니다.";
     }
+
+
+    // 로그인 요청 처리
+    @PostMapping("/login")
+    public String loginMember(@RequestParam String email, @RequestParam String password, Model model) {
+        boolean isAuthenticated = memberService.verifyLogin(email, password);
+
+        if (isAuthenticated) {
+            // 로그인 성공 시 페이지 이동
+            model.addAttribute("message", "로그인 성공");
+            return "redirect:/home"; // 메인 페이지 또는 로그인 후 이동할 페이지로 리디렉션
+        } else {
+            // 로그인 실패 시 다시 로그인 페이지로 이동
+            model.addAttribute("error", "이메일 또는 비밀번호가 잘못되었습니다.");
+            return "member/sign-in-up"; // 로그인 실패 시 다시 로그인 페이지로 이동
+        }
+    }
 }

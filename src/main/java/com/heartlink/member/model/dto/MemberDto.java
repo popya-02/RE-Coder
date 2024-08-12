@@ -25,6 +25,7 @@ public class MemberDto {
     private String confirmPassword;
 
     @NotBlank
+    @Pattern(regexp = "^[가-힣]+$")
     @Size(min = 2, max = 5)
     private String nickname;
 
