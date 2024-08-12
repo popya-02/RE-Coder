@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/review")
 public class ReviewController {
@@ -20,7 +22,9 @@ public class ReviewController {
     }
 
     @GetMapping("/photomain")
-    public String photoMain() {
+    public String photoMain(Model model) {
+        List<ReviewDto> reviews = reviewService.getAllReviews();
+        model.addAttribute("reviews", reviews);
         return "/review/review_photo/photo-main";
     }
 
@@ -36,7 +40,6 @@ public class ReviewController {
 
     @GetMapping("/photodetail")
     public String photoDetail(@RequestParam("reviewNo") int reviewNo, Model model) {
-        // 리뷰 상세 정보 가져오기
         ReviewDto review = reviewService.getReviewDetail(reviewNo);
         model.addAttribute("review", review);
         return "/review/review_photo/photo-detail";
@@ -47,7 +50,6 @@ public class ReviewController {
         return "/review/live-main";
     }
 
-    // photoenroll 페이지에서 글 작성 요청을 처리하는 메서드
     @PostMapping("/submit")
     public String submitPhotoEnroll(@RequestParam("title") String title,
                                     @RequestParam("content") String content,
@@ -62,15 +64,15 @@ public class ReviewController {
 
             if (isSaved) {
                 model.addAttribute("message", "글이 성공적으로 작성되었습니다.");
-                return "redirect:/review/photomain"; // 글 목록 페이지로 리다이렉트
+                return "redirect:/review/photomain";
             } else {
                 model.addAttribute("message", "글 작성에 실패했습니다.");
-                return "review/review_photo/photo-enroll"; // 글 작성 페이지로 다시 이동
+                return "review/review_photo/photo-enroll";
             }
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("message", "오류가 발생했습니다: " + e.getMessage());
-            return "review/review_photo/photo-enroll"; // 글 작성 페이지로 다시 이동
+            return "review/review_photo/photo-enroll";
         }
     }
 }

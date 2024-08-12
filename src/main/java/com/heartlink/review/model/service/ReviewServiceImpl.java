@@ -5,6 +5,10 @@ import com.heartlink.review.model.dto.ReviewDto;
 import com.heartlink.review.model.dto.ReviewPhotoDto;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Service
 public class ReviewServiceImpl implements ReviewService {
 
@@ -12,6 +16,32 @@ public class ReviewServiceImpl implements ReviewService {
 
     public ReviewServiceImpl(ReviewDao reviewDao) {
         this.reviewDao = reviewDao;
+    }
+
+    @Override
+    public List<ReviewDto> getAllReviews() {
+        List<ReviewDto> reviews = reviewDao.getAllReviews();
+        for (ReviewDto review : reviews) {
+            String firstImageUrl = extractFirstImageUrl(review.getReviewContent());
+            review.setFirstImageUrl(firstImageUrl != null ? firstImageUrl : "/image/default-thumbnail.jpg");
+        }
+        return reviews;
+    }
+
+    private String extractFirstImageUrl(String content) {
+        String imgTagPattern = "<img[^>]+src=[\"']([^\"']+)[\"'][^>]*>";
+        Pattern pattern = Pattern.compile(imgTagPattern);
+        Matcher matcher = pattern.matcher(content);
+        if (matcher.find()) {
+            return matcher.group(1); // 첫 번째 이미지의 URL 추출
+        }
+        return null;
+    }
+
+    @Override
+    public ReviewDto getReviewDetail(int reviewNo) {
+        reviewDao.increaseReviewViews(reviewNo);
+        return reviewDao.getReviewDetail(reviewNo);
     }
 
     @Override
@@ -27,13 +57,6 @@ public class ReviewServiceImpl implements ReviewService {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public ReviewDto getReviewDetail(int reviewNo) {
-        // 조회수 증가
-        reviewDao.increaseReviewViews(reviewNo);
-        return reviewDao.getReviewDetail(reviewNo);
     }
 
     @Override

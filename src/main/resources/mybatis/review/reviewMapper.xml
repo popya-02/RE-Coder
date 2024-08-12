@@ -9,9 +9,28 @@
         <result column="REVIEW_CONTENT" property="reviewContent"/>
         <result column="REVIEWER_USER_ID" property="reviewerUserId"/>
         <result column="REVIEW_RATING" property="reviewRating"/>
-        <result column="REVIEW_VIEWS" property="reviewViews"/> <!-- 조회수 매핑 -->
+        <result column="REVIEW_VIEWS" property="reviewViews"/>
         <result column="REVIEW_TYPE" property="reviewType"/>
     </resultMap>
+
+    <!-- 리뷰 리스트 가져오기 -->
+    <select id="getAllReviews" resultMap="reviewResultSet">
+        SELECT REVIEW_NO, REVIEW_TITLE, REVIEW_CONTENT, REVIEWER_USER_ID, REVIEW_RATING, REVIEW_VIEWS
+        FROM REVIEW_BOARD
+    </select>
+
+    <!-- 리뷰 상세와 사진 가져오기 -->
+    <select id="getReviewDetail" resultMap="reviewResultSet">
+        SELECT REVIEW_NO, REVIEW_TITLE, REVIEW_CONTENT, REVIEWER_USER_ID, REVIEW_RATING, REVIEW_VIEWS
+        FROM REVIEW_BOARD
+        WHERE REVIEW_NO = #{reviewNo}
+    </select>
+
+    <select id="getReviewPhotos" resultType="string">
+        SELECT PHOTO_PATH || '/' || PHOTO_NAME AS photoUrl
+        FROM REVIEW_PHOTO_BOARD
+        WHERE REVIEW_NO = #{reviewNo}
+    </select>
 
     <!-- 리뷰 저장 -->
     <insert id="savePhotoReview" parameterType="com.heartlink.review.model.dto.ReviewDto">
@@ -29,13 +48,6 @@
         INSERT INTO REVIEW_PHOTO_BOARD (PHOTO_NO, REVIEW_NO, PHOTO_PATH, PHOTO_NAME)
         VALUES (REVIEW_PHOTO_SEQ.NEXTVAL, #{reviewNo}, #{photoPath}, #{photoName})
     </insert>
-
-    <!-- 특정 리뷰 상세 정보 가져오기 -->
-    <select id="getReviewDetail" resultMap="reviewResultSet" parameterType="int">
-        SELECT REVIEW_NO, REVIEW_TITLE, REVIEW_CONTENT, REVIEWER_USER_ID, REVIEW_RATING, REVIEW_VIEWS
-        FROM REVIEW_BOARD
-        WHERE REVIEW_NO = #{reviewNo}
-    </select>
 
     <!-- 조회수 증가 -->
     <update id="increaseReviewViews" parameterType="int">

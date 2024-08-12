@@ -5,6 +5,8 @@ import com.heartlink.review.model.dto.ReviewPhotoDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class ReviewDao {
     private final SqlSession sqlSession;
@@ -13,27 +15,26 @@ public class ReviewDao {
         this.sqlSession = sqlSession;
     }
 
-    // 리뷰 저장
-    public int savePhotoReview(ReviewDto review) {
-        return sqlSession.insert("reviewMapper.savePhotoReview", review);
+    public List<ReviewDto> getAllReviews() {
+        return sqlSession.selectList("reviewMapper.getAllReviews");
     }
 
-    // 리뷰 번호 얻기
-    public String getLastReviewNo() {
-        return sqlSession.selectOne("reviewMapper.getLastReviewNo");
-    }
-
-    // 리뷰 사진 저장
-    public int saveReviewPhoto(ReviewPhotoDto reviewPhoto) {
-        return sqlSession.insert("reviewMapper.saveReviewPhoto", reviewPhoto);
-    }
-
-    // 특정 리뷰 상세 정보 가져오기
     public ReviewDto getReviewDetail(int reviewNo) {
         return sqlSession.selectOne("reviewMapper.getReviewDetail", reviewNo);
     }
 
-    // 조회수 증가
+    public int savePhotoReview(ReviewDto review) {
+        return sqlSession.insert("reviewMapper.savePhotoReview", review);
+    }
+
+    public String getLastReviewNo() {
+        return sqlSession.selectOne("reviewMapper.getLastReviewNo");
+    }
+
+    public int saveReviewPhoto(ReviewPhotoDto reviewPhoto) {
+        return sqlSession.insert("reviewMapper.saveReviewPhoto", reviewPhoto);
+    }
+
     public int increaseReviewViews(int reviewNo) {
         return sqlSession.update("reviewMapper.increaseReviewViews", reviewNo);
     }
