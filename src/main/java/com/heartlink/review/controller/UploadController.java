@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.UUID;
 
 @Controller
@@ -25,10 +26,11 @@ public class UploadController {
     @PostMapping("/image-upload")
     public ResponseEntity<String> imageUpload(@RequestParam("file") MultipartFile file) {
         try {
-            // 서버에 저장할 경로 설정
-            String uploadDirectory = context.getServletContext().getRealPath("/image/review");
+            // 로컬 경로 설정
+            String projectDirectory = Paths.get("").toAbsolutePath().toString();
+            String uploadDirectory = projectDirectory + "/src/main/resources/static/image/review";
 
-            // 파일 이름 생성 (중복 방지를 위해 UUID 사용)
+            // 파일 이름 생성 (UUID 사용)
             String originalFileName = file.getOriginalFilename();
             String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
             String uuidFileName = UUID.randomUUID().toString() + fileExtension;
@@ -42,7 +44,7 @@ public class UploadController {
             // 파일 저장
             file.transferTo(new File(uploadDirectory, uuidFileName));
 
-            // 이미지 파일의 URL을 반환
+            // 이미지 파일의 URL을 반환 (브라우저에서 접근 가능한 URL로 설정)
             String fileUrl = "/image/review/" + uuidFileName;
             return ResponseEntity.ok(fileUrl);
         } catch (IOException e) {
