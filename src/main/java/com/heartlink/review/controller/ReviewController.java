@@ -57,9 +57,8 @@ public class ReviewController {
             review.setReviewTitle(title);
             review.setReviewContent(content);
             review.setReviewerUserId(7); // 임의의 리뷰어 사용자 ID
-            review.setReviewedUserId(8); // 임의의 리뷰 대상 사용자 ID
 
-            boolean isSaved = reviewService.saveReview(review, null);
+            boolean isSaved = reviewService.savePhotoReview(review, null);
 
             if (isSaved) {
                 model.addAttribute("message", "글이 성공적으로 작성되었습니다.");

@@ -26,7 +26,7 @@ public class ChatbotController {
     static {
         try {
             Properties properties = new Properties();
-            FileInputStream input = new FileInputStream("./apikeys.properties");
+            FileInputStream input = new FileInputStream("src/main/resources/apikeys.properties");
             properties.load(input);
             apiUrl = properties.getProperty("apiUrl");
             secretKey = properties.getProperty("secretKey");

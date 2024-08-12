@@ -4,10 +4,9 @@ import com.heartlink.review.model.dto.ReviewDto;
 import com.heartlink.review.model.dto.ReviewPhotoDto;
 
 public interface ReviewService {
-
-
-    public boolean saveReview(ReviewDto review, ReviewPhotoDto reviewPhoto);
+    boolean savePhotoReview(ReviewDto review, ReviewPhotoDto reviewPhoto);
 
     ReviewDto getReviewDetail(int reviewNo);
 
+    void increaseReviewViews(int reviewNo);  // 조회수 증가 메서드 추가
 }

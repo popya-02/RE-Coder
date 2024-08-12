@@ -15,8 +15,8 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public boolean saveReview(ReviewDto review, ReviewPhotoDto reviewPhoto) {
-        int reviewResult = reviewDao.saveReview(review);
+    public boolean savePhotoReview(ReviewDto review, ReviewPhotoDto reviewPhoto) {
+        int reviewResult = reviewDao.savePhotoReview(review);
         if (reviewResult > 0) {
             if (reviewPhoto != null) {
                 String reviewNo = reviewDao.getLastReviewNo();
@@ -29,8 +29,15 @@ public class ReviewServiceImpl implements ReviewService {
         return false;
     }
 
+    @Override
     public ReviewDto getReviewDetail(int reviewNo) {
+        // 조회수 증가
+        reviewDao.increaseReviewViews(reviewNo);
         return reviewDao.getReviewDetail(reviewNo);
     }
-}
 
+    @Override
+    public void increaseReviewViews(int reviewNo) {
+        reviewDao.increaseReviewViews(reviewNo);
+    }
+}

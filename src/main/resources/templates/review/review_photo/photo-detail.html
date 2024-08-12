@@ -23,11 +23,11 @@
                         <div>
                             <div class="profile-info-ct">
                                 <span class="sound-only">작성자</span>
-                                <strong th:text="${review.reviewerUserId}">작성자 ID</strong>
+                                <strong th:text="${review.reviewerUserId}">작성자 이름</strong>
                                 <span class="sound-only">조회</span>
                                 <strong>
                                     <i class="icon-users"></i>
-                                    <span th:text="${review.viewCount}">조회수</span>명 읽음
+                                    <span th:text="${review.reviewViews}">조회수</span>명 읽음
                                 </strong>
                             </div>
                         </div>
@@ -37,9 +37,6 @@
                         <!-- 리뷰 내용 및 함께한 사람의 ID 동적 표시 -->
                         <div class="ptreview-con" th:utext="${review.reviewContent}">
                             <!-- 리뷰 내용이 동적으로 추가됩니다 -->
-                        </div>
-                        <div class="ptreview-con">
-                            <p>함께한 사람의 ID: <strong th:text="${review.reviewedUserId}"></strong></p>
                         </div>
                     </section>
 

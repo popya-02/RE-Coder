@@ -14,8 +14,8 @@ public class ReviewDao {
     }
 
     // 리뷰 저장
-    public int saveReview(ReviewDto review) {
-        return sqlSession.insert("reviewMapper.saveReview", review);
+    public int savePhotoReview(ReviewDto review) {
+        return sqlSession.insert("reviewMapper.savePhotoReview", review);
     }
 
     // 리뷰 번호 얻기
@@ -31,5 +31,10 @@ public class ReviewDao {
     // 특정 리뷰 상세 정보 가져오기
     public ReviewDto getReviewDetail(int reviewNo) {
         return sqlSession.selectOne("reviewMapper.getReviewDetail", reviewNo);
+    }
+
+    // 조회수 증가
+    public int increaseReviewViews(int reviewNo) {
+        return sqlSession.update("reviewMapper.increaseReviewViews", reviewNo);
     }
 }
