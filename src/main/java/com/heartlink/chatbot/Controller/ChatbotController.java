@@ -11,31 +11,52 @@ import org.springframework.stereotype.Controller;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
+import java.util.Properties;
 
 @Controller
 public class ChatbotController {
 
-    private static String secretKey = "bHBkTEJiVm9lT3pjSlBPTVVzbnd1QXRHSFFCVHhsUEo=";
-    private static String apiUrl = "https://0ix8fo6vl4.apigw.ntruss.com/custom/v1/15283/37526a18b31b19e83c524f1590276586ccb10b41e946731080d54eb1d7253d6f";
+    private static String apiUrl;
+    private static String secretKey;
+
+    static {
+        try {
+            Properties properties = new Properties();
+            FileInputStream input = new FileInputStream("./apikeys.properties");
+            properties.load(input);
+            apiUrl = properties.getProperty("apiUrl");
+            secretKey = properties.getProperty("secretKey");
+            input.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @MessageMapping("/sendMessage")
     @SendTo("/topic/public")
     public String sendMessage(@Payload String chatMessage) throws IOException {
+        JSONParser jsonParser = new JSONParser();
+        JSONObject messageJson = null;
+        boolean isPostback = false;
 
-        System.out.println("Received chat message: " + chatMessage); // 디버깅 로그 추가
+        try {
+            messageJson = (JSONObject) jsonParser.parse(chatMessage);
+            isPostback = messageJson.containsKey("postback");
+        } catch (Exception e) {
+            System.out.println("Error parsing received message: " + e.getMessage());
+        }
+
+        String messageToSend = isPostback ? (String) messageJson.get("postback") : chatMessage;
 
         URL url = new URL(apiUrl);
-        String message = getReqMessage(chatMessage);
+        String message = getReqMessage(messageToSend);
         String encodeBase64String = makeSignature(message, secretKey);
 
-        HttpURLConnection con = (HttpURLConnection)url.openConnection();
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json;UTF-8");
         con.setRequestProperty("X-NCP-CHATBOT_SIGNATURE", encodeBase64String);
@@ -49,9 +70,7 @@ public class ChatbotController {
         int responseCode = con.getResponseCode();
         String chatResponse = "";
 
-        System.out.println("Response Code: " + responseCode); // 디버깅 로그 추가
-
-        if(responseCode == 200) {
+        if (responseCode == 200) {
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             StringBuilder jsonString = new StringBuilder();
             String decodedString;
@@ -59,33 +78,35 @@ public class ChatbotController {
                 jsonString.append(decodedString);
             }
 
-            System.out.println("API Response: " + jsonString.toString()); // 디버깅 로그 추가
+            System.out.println("API Response: " + jsonString.toString());
 
             JSONParser jsonparser = new JSONParser();
             try {
-                JSONObject json = (JSONObject)jsonparser.parse(jsonString.toString());
-                JSONArray bubblesArray = (JSONArray)json.get("bubbles");
+                JSONObject json = (JSONObject) jsonparser.parse(jsonString.toString());
+                String version = (String) json.get("version");
+                JSONArray bubblesArray = (JSONArray) json.get("bubbles");
 
                 if (bubblesArray != null && !bubblesArray.isEmpty()) {
                     JSONObject bubbles = (JSONObject) bubblesArray.get(0);
                     String type = (String) bubbles.get("type");
 
                     if ("template".equals(type)) {
-                        JSONObject data = (JSONObject) bubbles.get("data");
-                        JSONObject cover = (JSONObject) data.get("cover");
-                        JSONObject coverData = (JSONObject) cover.get("data");
-                        chatResponse = coverData.get("description").toString(); // 인코딩 처리 생략
+                        if ("v1".equals(version)) {
+                            chatResponse = handleV1Form(bubbles);
+                        } else if ("v2".equals(version)) {
+                            chatResponse = handleV2Form(bubbles);
+                        }
                     } else if ("text".equals(type)) {
                         JSONObject data = (JSONObject) bubbles.get("data");
-                        chatResponse = data.get("description").toString(); // 인코딩 처리 생략
+                        chatResponse = data.get("description").toString();
                     }
                 } else {
-                    chatResponse = "Bubbles array is empty or null.";
+                    chatResponse = "Bubble Array의 값이 null입니다";
                 }
             } catch (Exception e) {
-                System.out.println("Error parsing JSON response");
+                System.out.println("JSON 파싱에 오류가 발생했습니다. ");
                 e.printStackTrace();
-                chatResponse = "Error parsing response.";
+                chatResponse = "JSON 파싱에 오류가 발생했습니다.";
             }
 
             in.close();
@@ -96,6 +117,41 @@ public class ChatbotController {
         return chatResponse;
     }
 
+    @MessageMapping("/getPersistentMenu")
+    @SendTo("/topic/persistentMenu")
+    public String getPersistentMenu() throws IOException {
+        // 고정 메뉴로 사용할 폼 요청하기
+        String persistentMenuMessage = "#{기본 문의}"; // 고정 메뉴의 폼 이름
+        return sendMessage(persistentMenuMessage);
+    }
+
+    private String handleV1Form(JSONObject bubbles) {
+        JSONObject data = (JSONObject) bubbles.get("data");
+        JSONObject cover = (JSONObject) data.get("cover");
+        JSONObject coverData = (JSONObject) cover.get("data");
+        String chatResponse = coverData.get("description").toString();
+
+        JSONArray contentTable = (JSONArray) data.get("contentTable");
+        if (contentTable != null) {
+            chatResponse += "\n" + contentTable.toJSONString();
+        }
+
+        return chatResponse;
+    }
+
+    private String handleV2Form(JSONObject bubbles) {
+        JSONObject data = (JSONObject) bubbles.get("data");
+        JSONObject cover = (JSONObject) data.get("cover");
+        JSONObject coverData = (JSONObject) cover.get("data");
+        String chatResponse = coverData.get("description").toString();
+
+        JSONArray contentTable = (JSONArray) data.get("contentTable");
+        if (contentTable != null) {
+            chatResponse += "\n" + contentTable.toJSONString();
+        }
+
+        return chatResponse;
+    }
 
     public static String makeSignature(String message, String secretKey) {
         String encodeBase64String = "";
@@ -127,22 +183,18 @@ public class ChatbotController {
             JSONObject bubbles_obj = new JSONObject();
             JSONObject data_obj = new JSONObject();
 
-            if ("open".equals(messageContent)) {
-                bubbles_obj.put("type", "text");
-                data_obj.put("description", "Welcome to our chatbot! How can I assist you today?");
-            } else {
-                bubbles_obj.put("type", "text");
-                data_obj.put("description", messageContent);
-            }
+            bubbles_obj.put("type", "text");
+            data_obj.put("description", messageContent);
+
             bubbles_obj.put("data", data_obj);
             JSONArray bubbles_array = new JSONArray();
             bubbles_array.add(bubbles_obj);
 
             obj.put("bubbles", bubbles_array);
-            obj.put("event", "open".equals(messageContent) ? "open" : "send");
+            obj.put("event", "send");
 
             requestBody = obj.toString();
-            System.out.println("Request Body: " + requestBody); // 디버깅 로그 추가
+//            System.out.println("Request Body: " + requestBody);
 
         } catch (Exception e){
             System.out.println("## Exception : " + e);
@@ -150,6 +202,4 @@ public class ChatbotController {
 
         return requestBody;
     }
-
-
 }
