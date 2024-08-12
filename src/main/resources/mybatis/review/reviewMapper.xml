@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reviewMapper">
+
+    <!-- ReviewDto에 대한 ResultMap 설정 -->
+    <resultMap type="com.heartlink.review.model.dto.ReviewDto" id="reviewResultSet">
+        <result column="REVIEW_NO" property="reviewNo"/>
+        <result column="REVIEW_TITLE" property="reviewTitle"/>
+        <result column="REVIEW_CONTENT" property="reviewContent"/>
+        <result column="REVIEWER_USER_ID" property="reviewerUserId"/>
+        <result column="REVIEWED_USER_ID" property="reviewedUserId"/>
+        <result column="REVIEW_RATING" property="reviewRating"/>
+    </resultMap>
+
+    <!-- ReviewPhotoDto에 대한 ResultMap 설정 -->
+    <resultMap type="com.heartlink.review.model.dto.ReviewPhotoDto" id="reviewPhotoResultSet">
+        <result column="PHOTO_PATH" property="photoPath"/>
+        <result column="PHOTO_NAME" property="photoName"/>
+        <result column="REVIEW_NO" property="reviewNo"/>
+    </resultMap>
+
+    <insert id="saveReview" parameterType="com.heartlink.review.model.dto.ReviewDto">
+        INSERT INTO REVIEW_BOARD (REVIEW_NO, REVIEW_TITLE, REVIEW_CONTENT, REVIEWER_USER_ID, REVIEWED_USER_ID)
+        VALUES (REVIEW_SEQ.NEXTVAL, #{reviewTitle}, #{reviewContent}, #{reviewerUserId}, #{reviewedUserId})
+    </insert>
+
+    <select id="getLastReviewNo" resultType="string">
+        SELECT REVIEW_SEQ.CURRVAL FROM DUAL
+    </select>
+
+    <insert id="saveReviewPhoto" parameterType="com.heartlink.review.model.dto.ReviewPhotoDto">
+        INSERT INTO REVIEW_PHOTO_BOARD (PHOTO_NO, REVIEW_NO, PHOTO_PATH, PHOTO_NAME)
+        VALUES (REVIEW_PHOTO_SEQ.NEXTVAL, #{reviewNo}, #{photoPath}, #{photoName})
+    </insert>
+
+</mapper>

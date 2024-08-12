@@ -2,34 +2,29 @@ package com.heartlink.review.model.dao;
 
 import com.heartlink.review.model.dto.ReviewDto;
 import com.heartlink.review.model.dto.ReviewPhotoDto;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ReviewDao {
-    private final JdbcTemplate jdbcTemplate;
+    private final SqlSession sqlSession;
 
-    public ReviewDao(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public ReviewDao(SqlSession sqlSession) {
+        this.sqlSession = sqlSession;
     }
 
     // 리뷰 저장
     public int saveReview(ReviewDto review) {
-        String sql = "INSERT INTO REVIEW_BOARD (REVIEW_NO, REVIEW_TITLE, REVIEW_CONTENT, REVIEWER_USER_ID, REVIEWED_USER_ID) VALUES (REVIEW_SEQ.NEXTVAL, ?, ?, ?, ?)";
-        return jdbcTemplate.update(sql, review.getReviewTitle(), review.getReviewContent(), review.getReviewerUserId(), review.getReviewedUserId());
+        return sqlSession.insert("reviewMapper.saveReview", review);
     }
 
     // 리뷰 번호 얻기
     public String getLastReviewNo() {
-        String sql = "SELECT REVIEW_SEQ.CURRVAL FROM DUAL";
-        return jdbcTemplate.queryForObject(sql, String.class);
+        return sqlSession.selectOne("reviewMapper.getLastReviewNo");
     }
 
     // 리뷰 사진 저장
     public int saveReviewPhoto(ReviewPhotoDto reviewPhoto) {
-        String sql = "INSERT INTO REVIEW_PHOTO_BOARD (PHOTO_NO, REVIEW_NO, PHOTO_PATH, PHOTO_NAME) VALUES (REVIEW_PHOTO_SEQ.NEXTVAL, ?, ?, ?)";
-        return jdbcTemplate.update(sql, reviewPhoto.getReviewNo(), reviewPhoto.getPhotoPath(), reviewPhoto.getPhotoName());
+        return sqlSession.insert("reviewMapper.saveReviewPhoto", reviewPhoto);
     }
 }
-
-
