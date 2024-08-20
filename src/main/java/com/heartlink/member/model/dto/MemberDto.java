@@ -12,6 +12,8 @@ import jakarta.validation.constraints.Size;
 @Setter
 public class MemberDto {
 
+    private int userNumber;
+
     @Email
     @NotBlank
     private String email;
@@ -25,6 +27,7 @@ public class MemberDto {
     private String confirmPassword;
 
     @NotBlank
+    @Pattern(regexp = "^[가-힣]+$")
     @Size(min = 2, max = 5)
     private String nickname;
 

@@ -30,6 +30,7 @@ dependencies {
 //    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
     implementation 'org.springframework.boot:spring-boot-starter-security'
 
+
     // 회원가입 유효성
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
@@ -62,6 +63,11 @@ dependencies {
 
     // 이메일 인증
     implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+    // JWT 의존성
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5' // Jackson 필요 시
 }
 
 
